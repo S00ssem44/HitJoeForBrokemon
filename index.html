@@ -1299,23 +1299,20 @@ function build_rarity_album() {
 
 
 // === STABIELE EN SCHONE OPSTARTCODE (STAAT HIER EXACT ÉÉN KEER) ===
+// === STABIELE EN SCHONE OPSTARTCODE (STAAT HIER EXACT ÉÉN KEER) ===
 document.addEventListener("DOMContentLoaded", () => {
-    // Zet de tellers dwingend op 0 om haperingen te voorkomen
     currentLineIndex = 0;
     currentCharIndex = 0;
     
-    // Bouw de album-interface direct op de achtergrond op
     if (typeof build_rarity_album === "function") {
         build_rarity_album(); 
     }
     
-    // 1. Probeer eerst de opgeslagen game te laden
     let hasSave = false;
     if (typeof loadGame === "function") {
         hasSave = loadGame();
     }
     
-    // 2. Als er WEL een savegame is, passen we de schermen aan en stoppen we de introductie
     if (hasSave) {
         let hb = document.getElementById("hit-btn");
         if(hb) hb.style.display = "inline-block";
@@ -1326,69 +1323,58 @@ document.addEventListener("DOMContentLoaded", () => {
         if (typeof update_achievement_ui === "function") update_achievement_ui();
         
         if (typeof terminal !== 'undefined' && terminal) {
-            terminal.innerHTML = `<span style="color: #2ecc71; font-weight: bold;">Welcome back! Tap the face to hit Joe</span>\n`;
+            terminal.innerHTML = `<span style="color: #2ecc71; font-weight: bold;">Welcome back! Tap Joe to hit him</span>\n`;
         }
     } else {
-        // ALS ER GEEN SAVEGAME IS: Start de introductie via de officiële startIntro() route
         if (typeof startIntro === "function") {
             startIntro(); 
         }
     }
 
-    // 3. Activeer de Auto-Save loop (Slaat elke 10 seconden op)
     if (typeof saveGame === "function") {
         setInterval(saveGame, 10000);
     }
 });
 
 // ==========================================================
-// 🚨 GECORRIGEERDE DEVELOPER MATRIX INTERFACE (BINNEN DE SCRIPT TAGS) 🚨
+// 🚨 THE DEVELOPER MATRIX INTERFACE (FULLY ENGLISH RELEASE) 🚨
 // ==========================================================
 function TheCreatorGaveMeThisCheatcode44(type, amount) {
     let panel = document.getElementById("developer-matrix-panel");
 
-    // Open het visuele paneel onderaan
     if (type === undefined && amount === undefined) {
         if (panel) {
             panel.style.display = "block";
             panel.scrollIntoView({ behavior: 'smooth' });
         }
         if (typeof terminal !== 'undefined' && terminal) {
-            terminal.innerHTML += `\n<span style="color: #ef4444; font-weight: bold;">🚨 [ACCESS GRANTED] Developer Matrix geactiveerd!</span>\n`;
+            terminal.innerHTML += `\n<span style="color: #ef4444; font-weight: bold;">🚨 [ACCESS GRANTED] Developer Matrix activated!</span>\n`;
             terminal.scrollTop = terminal.scrollHeight;
         }
-        return "Developer panel activated at the botom of the page.";
+        return "Developer panel activated at the bottom of the page.";
     }
 
-    // Directe verwerking via de console
     if (String(type).toLowerCase().trim() === 'card') {
         if (typeof executeCardSpawnCheat === "function") return executeCardSpawnCheat(String(amount));
-        return "ERROR: Card-cheat function not found.";
+        return "Error: Card spawn function not found.";
     }
     
     let parsedAmount = parseFloat(amount);
     if (isNaN(parsedAmount) || parsedAmount <= 0) {
-        return "ERROR: Enter a valid number.";
+        return "Error: Please enter a valid number.";
     }
     
     if (typeof executeCheatInjection === "function") {
         return executeCheatInjection(String(type).toLowerCase().trim(), parsedAmount);
     }
-    return "ERROR: Injection-function not found.";
+    return "Error: Injection function not found.";
 }
 
-// Onafhankelijke knoppen-helpers gekoppeld aan de spans onderaan
-// ==========================================================
-// GEFORCEERDE EN LIVE-UPDATE HELPERS VOOR DE CHEAT-KNOPPEN
-// ==========================================================
-// ==========================================================
-// KOGELVRIJE CHEAT-HELPERS VIA DIRECTE POP-UP BOXEN
-// ==========================================================
 function matrixClickMoney() {
-    let input = prompt("How much (\$) do you want to add?", "1000");
-    if (input === null) return; // Geannuleerd
+    let input = prompt("How much CASH (\$) do you want to add?", "1000");
+    if (input === null) return; 
     let amt = parseFloat(input);
-    if (isNaN(amt) || amt <= 0) return alert("Enter a valid positive number!");
+    if (isNaN(amt) || amt <= 0) return alert("Please enter a valid positive number!");
 
     if (typeof number !== 'undefined') {
         number += amt;
@@ -1396,33 +1382,33 @@ function matrixClickMoney() {
         if (typeof triggerMoneyAnimation === "function") triggerMoneyAnimation('win');
         if (typeof checkAchievements === "function") checkAchievements('cash', number);
         if (typeof terminal !== 'undefined' && terminal) {
-            terminal.innerHTML += `\n<span style="color: #10b981;">[CHEAT] +$${amt.toLocaleString()} cash toegevoegd.</span>\n`;
+            terminal.innerHTML += `\n<span style="color: #10b981;">[CHEAT] +$${amt.toLocaleString()} cash injected.</span>\n`;
             terminal.scrollTop = terminal.scrollHeight;
         }
     }
 }
 
 function matrixClickGold() {
-    let input = prompt("How much GOLD COINS (🌟) do you want to add?", "100");
+    let input = prompt("How many GOLD COINS do you want to add?", "100");
     if (input === null) return;
     let amt = Math.floor(parseFloat(input));
-    if (isNaN(amt) || amt <= 0) return alert("Enter a valid positive number!");
+    if (isNaN(amt) || amt <= 0) return alert("Please enter a valid positive number!");
 
     if (typeof gold_coins !== 'undefined') {
         gold_coins += amt;
         if (typeof updateGoldDisplay === "function") updateGoldDisplay();
         if (typeof terminal !== 'undefined' && terminal) {
-            terminal.innerHTML += `\n<span style="color: #f59e0b;">[CHEAT] +${amt.toLocaleString()} Gold Coins toegevoegd.</span>\n`;
+            terminal.innerHTML += `\n<span style="color: #f59e0b;">[CHEAT] +${amt.toLocaleString()} Gold Coins injected.</span>\n`;
             terminal.scrollTop = terminal.scrollHeight;
         }
     }
 }
 
 function matrixClickMultiplier() {
-    let input = prompt("With how much x do you want to upgrade HIT MULTIPLIER?", "10");
+    let input = prompt("By how much do you want to increase the HIT MULTIPLIER?", "10");
     if (input === null) return;
     let amt = parseFloat(input);
-    if (isNaN(amt) || amt <= 0) return alert("Enter a valid positive number");
+    if (isNaN(amt) || amt <= 0) return alert("Please enter a valid positive number!");
 
     if (typeof click_multiplier !== 'undefined') {
         click_multiplier += amt;
@@ -1431,21 +1417,21 @@ function matrixClickMultiplier() {
             ub.innerText = `Upgrade Hits (${(click_multiplier * 2).toFixed(1)}x earnings) ($${upgrade_cost.toFixed(2)},-)`;
         }
         if (typeof terminal !== 'undefined' && terminal) {
-            terminal.innerHTML += `\n<span style="color: #8b5cf6;">[CHEAT] Multiplier met +${amt.toLocaleString()}x verhoogd!</span>\n`;
+            terminal.innerHTML += `\n<span style="color: #8b5cf6;">[CHEAT] Hit Multiplier boosted by +${amt.toLocaleString()}x!</span>\n`;
             terminal.scrollTop = terminal.scrollHeight;
         }
     }
 }
 
 function matrixClickPacks() {
-    let input = prompt("How many PACK UPGRADES do you want?", "5");
+    let input = prompt("How many PACK UPGRADES do you want to perform?", "5");
     if (input === null) return;
     let amt = Math.floor(parseFloat(input));
-    if (isNaN(amt) || amt <= 0) return alert("Enter a valid positive number");
+    if (isNaN(amt) || amt <= 0) return alert("Please enter a valid positive number!");
 
     if (typeof upgrade_packs_click === "function" && typeof chance_epic !== 'undefined' && typeof number !== 'undefined') {
         if (chance_epic >= 0.50) {
-            if (terminal) terminal.innerHTML += `\n<span style="color: #00bcd4;">[CHEAT] Packs are already on the highest level!</span>\n`;
+            if (terminal) terminal.innerHTML += `\n<span style="color: #00bcd4;">[CHEAT] Packs are already at maximum level!</span>\n`;
             return;
         }
 
@@ -1465,7 +1451,7 @@ function matrixClickPacks() {
         }
         
         if (terminal) {
-            terminal.innerHTML += `\n<span style="color: #00bcd4;">[CHEAT] Pack upgrades completed! (Epic chance: ${(chance_epic * 100).toFixed(2)}%)</span>\n`;
+            terminal.innerHTML += `\n<span style="color: #00bcd4;">[CHEAT] Pack upgrades processed! (Current Epic chance: ${(chance_epic * 100).toFixed(2)}%)</span>\n`;
             terminal.scrollTop = terminal.scrollHeight;
         }
     }
@@ -1473,10 +1459,10 @@ function matrixClickPacks() {
 
 function matrixClickCard() {
     let cardName = document.getElementById("cheat-card-name").value;
-    if (!cardName || cardName.trim() === "") return alert("Enter a Brokémon-name!");
+    if (!cardName || cardName.trim() === "") return alert("Please enter a Brokémon name!");
     if (typeof executeCardSpawnCheat === "function") {
         let result = executeCardSpawnCheat(cardName);
-        if (result.startsWith("Kaart")) alert(result);
+        if (result.startsWith("Kaart") || result.startsWith("Kaart")) alert("Brokémon not found. Check spelling!");
         else document.getElementById("cheat-card-name").value = "";
     }
 }
@@ -1484,11 +1470,15 @@ function matrixClickCard() {
 // JOUW ENIGE SCRIPT-TAG SLUIT HIER NETJES AF!
 </script>
 
+
+<!-- ==========================================================
+     THE DEVELOPER MATRIX INTERFACE (FULLY ENGLISH OUTSIDE SCRIPT)
+     ========================================================== -->
 <div id="developer-matrix-panel" style="display: none; margin: 40px auto; max-width: 750px; padding: 20px; background-color: #0f172a; border: 3px solid #ef4444; border-radius: 12px; color: #f8fafc; text-align: center; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3); position: relative; z-index: 99999; font-family: monospace;">
     <h4 style="color: #ef4444; margin: 0 0 5px 0; font-size: 18px; letter-spacing: 1px;">⚡ DEVELOPER MATRIX UNLOCKED ⚡</h4>
-    <p style="font-size: 12px; color: #94a3b8; margin: 0 0 20px 0;">Klik op een optie en vul de gewenste waarde in de pop-upbox in.</p>
+    <p style="font-size: 12px; color: #94a3b8; margin: 0 0 20px 0;">Click an option and enter the desired value in the pop-up box.</p>
     
-    <!-- SECTIE 1: Resources & Pack Upgrades -->
+    <!-- SECTION 1: Resources & Pack Upgrades -->
     <div style="display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px dashed #334155;">
         <span onclick="matrixClickMoney()" style="display: inline-block !important; background-color: #10b981; color: white; font-size: 13px; font-weight: bold; padding: 8px 14px; border-radius: 6px; cursor: pointer; user-select: none;">+ Money</span>
         <span onclick="matrixClickGold()" style="display: inline-block !important; background-color: #f59e0b; color: white; font-size: 13px; font-weight: bold; padding: 8px 14px; border-radius: 6px; cursor: pointer; user-select: none;">+ Gold</span>
@@ -1496,12 +1486,12 @@ function matrixClickCard() {
         <span onclick="matrixClickPacks()" style="display: inline-block !important; background-color: #00bcd4; color: black; font-size: 13px; font-weight: bold; padding: 8px 14px; border-radius: 6px; cursor: pointer; user-select: none;">+ Pack Upgrades</span>
     </div>
 
-    <!-- SECTIE 2: Directe Kaart Generator -->
+    <!-- SECTION 2: Specific Card Generator -->
     <div>
-        <p style="font-size: 13px; color: #f8fafc; margin: 0 0 8px 0; text-align: left; padding-left: 25px;">🃏 SPECIFIEKE KAART GENERATOR:</p>
+        <p style="font-size: 13px; color: #f8fafc; margin: 0 0 8px 0; text-align: left; padding-left: 25px;">🃏 SPECIFIC CARD GENERATOR:</p>
         <div style="display: flex; justify-content: center; gap: 10px; align-items: center;">
-            <input type="text" id="cheat-card-name" placeholder="Typ exacte naam (bijv: Mewtwo, Gyarados)..." style="padding: 8px 15px; font-size: 14px; width: 340px; border-radius: 6px; border: 2px solid #334155; background: #1e293b; color: white; font-family: monospace;">
-            <span onclick="matrixClickCard()" style="display: inline-block !important; background-color: #ec4899; color: white; font-size: 14px; font-weight: bold; padding: 8px 18px; border-radius: 6px; cursor: pointer; user-select: none;">Spawn Kaart 🪄</span>
+            <input type="text" id="cheat-card-name" placeholder="Type exact name (e.g., Mewbro, Pickachoo)..." style="padding: 8px 15px; font-size: 14px; width: 340px; border-radius: 6px; border: 2px solid #334155; background: #1e293b; color: white; font-family: monospace;">
+            <span onclick="matrixClickCard()" style="display: inline-block !important; background-color: #ec4899; color: white; font-size: 14px; font-weight: bold; padding: 8px 18px; border-radius: 6px; cursor: pointer; user-select: none;">Spawn Card 🪄</span>
         </div>
     </div>
 </div>
