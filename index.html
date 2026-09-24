@@ -176,25 +176,54 @@
         .tier-title { font-weight: bold; padding: 6px; margin-top: 15px; border-radius: 4px; text-align: left; }
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; padding: 8px 0; }
         .card-item { text-align: left; font-size: 13px; }
-    </style>
-</head>
-<!-- Geheime Cheat Console Sectie -->
-<div style="margin: 40px auto; max-width: 750px; padding: 15px; border-top: 1px dashed #adb5bd;">
-    <!-- Het verborgen cheat paneel -->
-    <div id="cheat-panel" style="display: none; margin-top: 20px; padding: 15px; background-color: #111827; border: 2px solid #ef4444; border-radius: 8px; color: #f9fafb;">
-        <h4 style="color: #ef4444; margin: 0 0 10px 0;">⚡ DEVELOPER CHEAT PANEL UNLOCKED ⚡</h4>
-        <p style="font-size: 12px; color: #9ca3af; margin-bottom: 15px;">Enter a quantity and inject it directly into the game state.</p>
-        
-        <input type="number" id="cheat-amount" value="1000" style="padding: 6px; font-size: 14px; width: 120px; border-radius: 4px; border: 1px solid #4b5563; background: #1f2937; color: white; text-align: center; margin-right: 10px;">
-        
-        <button onclick="injectCheat('money')" style="display: inline-block; background-color: #10b981; color: white; font-size: 13px; padding: 6px 12px;">+ Give Money</button>
-        <button onclick="injectCheat('gold')" style="display: inline-block; background-color: #f59e0b; color: white; font-size: 13px; padding: 6px 12px;">+ Give Gold</button>
-        <button onclick="injectCheat('multiplier')" style="display: inline-block; background-color: #8b5cf6; color: white; font-size: 13px; padding: 6px 12px;">+ Give Multiplier</button>
+    </style></head>
+<body>
+<!-- === 🗂️ THE SELECT FILE / SLOT SCREEN (WITH RENAME SYSTEM) === -->
+<div id="slot-select-screen" style="max-width: 600px; margin: 40px auto; text-align: center; font-family: monospace; background: #f8fafc; padding: 25px; border: 3px solid #ef4444; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); display: block !important; color: #0f172a;">
+    <h2 style="color: #ef4444; margin-bottom: 5px; font-weight: bold;">💾 SELECT YOUR SAVE FILE 💾</h2>
+    <p style="color: #64748b; font-size: 12px; margin-bottom: 25px;">Choose a slot to continue your journey or start a fresh Brokémon adventure.</p>
+    
+    <div style="display: flex; flex-direction: column; gap: 15px; padding: 10px;">
+        <!-- SLOT 1 -->
+        <div onclick="selectSlotAndPlay(1)" style="background: white; border: 2px solid #cbd5e1; padding: 15px; border-radius: 8px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: 0.2s;" onmouseover="this.style.borderColor='#ef4444'" onmouseout="this.style.borderColor='#cbd5e1'">
+            <div style="text-align: left;">
+                <strong id="slot-name-1" style="color: #0f172a;">📁 SAVE FILE 1</strong><br>
+                <div id="slot-info-1" style="font-size: 13px; margin-top: 4px; color: #475569;">Loading...</div>
+            </div>
+            <div style="display: flex; gap: 5px;">
+                <span onclick="renameSlot(1, event)" style="background: #64748b; color: white; padding: 6px 12px; border-radius: 4px; font-size: 11px; font-weight: bold; cursor: pointer; user-select: none;">Rename ✏️</span>
+                <span id="wipe-btn-1" onclick="wipeSlot(1, event)" style="background: #ef4444; color: white; padding: 6px 12px; border-radius: 4px; font-size: 11px; font-weight: bold; cursor: pointer; display: none; user-select: none;">Wipe Slot 🗑️</span>
+            </div>
+        </div>
+
+        <!-- SLOT 2 -->
+        <div onclick="selectSlotAndPlay(2)" style="background: white; border: 2px solid #cbd5e1; padding: 15px; border-radius: 8px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: 0.2s;" onmouseover="this.style.borderColor='#ef4444'" onmouseout="this.style.borderColor='#cbd5e1'">
+            <div style="text-align: left;">
+                <strong id="slot-name-2" style="color: #0f172a;">📁 SAVE FILE 2</strong><br>
+                <div id="slot-info-2" style="font-size: 13px; margin-top: 4px; color: #475569;">Loading...</div>
+            </div>
+            <div style="display: flex; gap: 5px;">
+                <span onclick="renameSlot(2, event)" style="background: #64748b; color: white; padding: 6px 12px; border-radius: 4px; font-size: 11px; font-weight: bold; cursor: pointer; user-select: none;">Rename ✏️</span>
+                <span id="wipe-btn-2" onclick="wipeSlot(2, event)" style="background: #ef4444; color: white; padding: 6px 12px; border-radius: 4px; font-size: 11px; font-weight: bold; cursor: pointer; display: none; user-select: none;">Wipe Slot 🗑️</span>
+            </div>
+        </div>
+
+        <!-- SLOT 3 -->
+        <div onclick="selectSlotAndPlay(3)" style="background: white; border: 2px solid #cbd5e1; padding: 15px; border-radius: 8px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: 0.2s;" onmouseover="this.style.borderColor='#ef4444'" onmouseout="this.style.borderColor='#cbd5e1'">
+            <div style="text-align: left;">
+                <strong id="slot-name-3" style="color: #0f172a;">📁 SAVE FILE 3</strong><br>
+                <div id="slot-info-3" style="font-size: 13px; margin-top: 4px; color: #475569;">Loading...</div>
+            </div>
+            <div style="display: flex; gap: 5px;">
+                <span onclick="renameSlot(3, event)" style="background: #64748b; color: white; padding: 6px 12px; border-radius: 4px; font-size: 11px; font-weight: bold; cursor: pointer; user-select: none;">Rename ✏️</span>
+                <span id="wipe-btn-3" onclick="wipeSlot(3, event)" style="background: #ef4444; color: white; padding: 6px 12px; border-radius: 4px; font-size: 11px; font-weight: bold; cursor: pointer; display: none; user-select: none;">Wipe Slot 🗑️</span>
+            </div>
+        </div>
     </div>
 </div>
 
 <body>
-
+    <div id="game-content-wrapper" style="display: none;">
     <div class="container">
         <div id="terminal"></div>
         <div class="right-panels">
@@ -245,6 +274,394 @@
     </div>
 
 <script>
+    let has_cheated = false; // Staat standaard op false bij een nieuw spel
+    // ==========================================================
+// 🚨 CRUCIAL RE-INJECTED DISPLAY FUNCTIONS 🚨
+// ==========================================================
+function updateMoneyDisplay() {
+    let moneyEl = document.getElementById("money-display");
+    if (moneyEl && typeof number !== 'undefined') {
+        moneyEl.innerText = "Balance: \$" + number.toFixed(2);
+    }
+}
+
+function updateGoldDisplay() {
+    let goldEl = document.getElementById("gold-display");
+    if (goldEl && typeof gold_coins !== 'undefined') {
+        goldEl.innerText = "🌟 Gold Coins: " + gold_coins;
+    }
+}
+
+function update_achievement_ui() {
+    let achList = document.getElementById("ach-list");
+    if (achList && typeof achievements !== 'undefined') {
+        achList.innerHTML = "";
+        Object.keys(achievements).forEach(key => {
+            let ach = achievements[key];
+            let status = ach.unlocked ? "✅" : "🔒";
+            achList.innerHTML += `<div style="font-size: 12px; margin-bottom: 4px;">${status} ${ach.name}</div>`;
+        });
+    }
+}
+
+function build_rarity_album() {
+    // Deze functie zorgt ervoor dat je album-grids gevuld worden met je nieuwe Brokémon
+    let pools = [
+        { id: "epic-grid", pool: epic_pool, owned: owned_epics, color: "#00b4d8" },
+        { id: "mythic-grid", pool: mythic_pool, owned: owned_mythics, color: "#8a2be2" },
+        { id: "legendary-grid", pool: legendary_pool, owned: owned_legendaries, color: "#e63946" },
+        { id: "mega-grid", pool: mega_pool, owned: owned_megas, color: "#d97706" }
+    ];
+
+    pools.forEach(p => {
+        let gridEl = document.getElementById(p.id);
+        if (gridEl && p.pool && p.owned) {
+            gridEl.innerHTML = "";
+            p.pool.forEach(name => {
+                let count = p.owned[name] || 0;
+                let opacity = count > 0 ? "1" : "0.3";
+                let border = count > 0 ? `2px solid ${p.color}` : "2px dashed #cbd5e1";
+                gridEl.innerHTML += `
+                    <div style="padding: 8px; border: ${border}; border-radius: 6px; opacity: ${opacity}; text-align: center; background: white; font-size: 12px; color: #0f172a;">
+                        <strong>${name}</strong><br>Owned: ${count}
+                    </div>
+                `;
+            });
+        }
+    });
+}
+
+// ==========================================================
+// 💾 MULTI-SLOT STORAGE SYSTEM (SAVE & LOAD) 💾
+// ==========================================================
+let current_slot = null; 
+
+function saveGame() {
+    if (!current_slot) return; // Sla niet op als er geen slot actief is
+
+    try {
+        // We bouwen de save-lijst heel veilig op. Als een variabele niet bestaat, pakt hij 0 of false.
+        let gameState = {
+            number: (typeof number !== 'undefined') ? number : 0,
+            gold_coins: (typeof gold_coins !== 'undefined') ? gold_coins : 0,
+            click_multiplier: (typeof click_multiplier !== 'undefined') ? click_multiplier : 1.0,
+            achievement_bonus_multiplier: (typeof achievement_bonus_multiplier !== 'undefined') ? achievement_bonus_multiplier : 1.0,
+            upgrade_cost: (typeof upgrade_cost !== 'undefined') ? upgrade_cost : 100,
+            next_multiplier_step: (typeof next_multiplier_step !== 'undefined') ? next_multiplier_step : 2,
+            upgrade_button_spawned: (typeof upgrade_button_spawned !== 'undefined') ? upgrade_button_spawned : false,
+            pack_upgrade_cost: (typeof pack_upgrade_cost !== 'undefined') ? pack_upgrade_cost : 200,
+            pack_upgrade_spawned: (typeof pack_upgrade_spawned !== 'undefined') ? pack_upgrade_spawned : false,
+            min_pack_cash: (typeof min_pack_cash !== 'undefined') ? min_pack_cash : 1,
+            max_pack_cash: (typeof max_pack_cash !== 'undefined') ? max_pack_cash : 5,
+            current_pack_price: (typeof current_pack_price !== 'undefined') ? current_pack_price : 10,
+            chance_epic: (typeof chance_epic !== 'undefined') ? chance_epic : 0.01,
+            chance_mythic: (typeof chance_mythic !== 'undefined') ? chance_mythic : 0.005,
+            chance_legendary: (typeof chance_legendary !== 'undefined') ? chance_legendary : 0.001,
+            chance_mega: (typeof chance_mega !== 'undefined') ? chance_mega : 0.005,
+            total_clicks: (typeof total_clicks !== 'undefined') ? total_clicks : 0,
+            total_packs_bought: (typeof total_packs_bought !== 'undefined') ? total_packs_bought : 0,
+            mega_legendary_unlocked: (typeof mega_legendary_unlocked !== 'undefined') ? mega_legendary_unlocked : false,
+            bank_notif_triggered: (typeof bank_notif_triggered !== 'undefined') ? bank_notif_triggered : false,
+            pokemon_notif_triggered: (typeof pokemon_notif_triggered !== 'undefined') ? pokemon_notif_triggered : false,
+            has_cheated: has_cheated,
+
+            // Sla de Brokémon-albums op
+            owned_megas: (typeof owned_megas !== 'undefined') ? owned_megas : {},
+            owned_epics: (typeof owned_epics !== 'undefined') ? owned_epics : {},
+            owned_mythics: (typeof owned_mythics !== 'undefined') ? owned_mythics : {},
+            owned_legendaries: (typeof owned_legendaries !== 'undefined') ? owned_legendaries : {}
+        };
+        
+        // Schrijf het direct hard weg naar het geselecteerde slot
+        localStorage.setItem("joe_game_save_slot_" + current_slot, JSON.stringify(gameState));
+        console.log("Progress successfully forced to Slot " + current_slot);
+    } catch (error) {
+        console.error("Critical error during saveGame execution:", error);
+    }
+}
+
+function loadGame(slotId) {
+    let savedData = localStorage.getItem("joe_game_save_slot_" + slotId);
+    if (!savedData) return false; // Geen savegame gevonden in dit slot
+
+    try {
+        let save = JSON.parse(savedData);
+        current_slot = slotId; // Zet het actieve slot direct vast
+        
+        // 1. Laad alle basis variabelen veilig in (met harde fallbacks naar je huidige waarden)
+        if (save.number !== undefined) number = save.number;
+        if (save.gold_coins !== undefined) gold_coins = save.gold_coins;
+        if (save.click_multiplier !== undefined) click_multiplier = save.click_multiplier;
+        if (save.achievement_bonus_multiplier !== undefined) achievement_bonus_multiplier = save.achievement_bonus_multiplier;
+        if (save.upgrade_cost !== undefined) upgrade_cost = save.upgrade_cost;
+        if (save.next_multiplier_step !== undefined) next_multiplier_step = save.next_multiplier_step;
+        if (save.upgrade_button_spawned !== undefined) upgrade_button_spawned = save.upgrade_button_spawned;
+        if (save.pack_upgrade_cost !== undefined) pack_upgrade_cost = save.pack_upgrade_cost;
+        if (save.pack_upgrade_spawned !== undefined) pack_upgrade_spawned = save.pack_upgrade_spawned;
+        if (save.min_pack_cash !== undefined) min_pack_cash = save.min_pack_cash;
+        if (save.max_pack_cash !== undefined) max_pack_cash = save.max_pack_cash;
+        if (save.current_pack_price !== undefined) current_pack_price = save.current_pack_price;
+        if (save.chance_epic !== undefined) chance_epic = save.chance_epic;
+        if (save.chance_mythic !== undefined) chance_mythic = save.chance_mythic;
+        if (save.chance_legendary !== undefined) chance_legendary = save.chance_legendary;
+        if (save.chance_mega !== undefined) chance_mega = save.chance_mega;
+        if (save.total_clicks !== undefined) total_clicks = save.total_clicks;
+        if (save.total_packs_bought !== undefined) total_packs_bought = save.total_packs_bought;
+        if (save.mega_legendary_unlocked !== undefined) mega_legendary_unlocked = save.mega_legendary_unlocked;
+        if (save.bank_notif_triggered !== undefined) bank_notif_triggered = save.bank_notif_triggered;
+        if (save.pokemon_notif_triggered !== undefined) pokemon_notif_triggered = save.pokemon_notif_triggered;
+        if (save.has_cheated !== undefined) has_cheated = save.has_cheated;
+
+        // 2. Laad je Brokémon-album arrays in
+        if (save.owned_megas !== undefined) owned_megas = save.owned_megas;
+        if (save.owned_epics !== undefined) owned_epics = save.owned_epics;
+        if (save.owned_mythics !== undefined) owned_mythics = save.owned_mythics;
+        if (save.owned_legendaries !== undefined) owned_legendaries = save.owned_legendaries;
+        
+        // 3. Herstel je Achievements veilig
+        if (typeof achievements !== 'undefined' && achievements) {
+            Object.keys(achievements).forEach(key => achievements[key].unlocked = false);
+            if (save.unlocked_achievements !== undefined) {
+                save.unlocked_achievements.forEach(key => {
+                    if (achievements[key]) achievements[key].unlocked = true;
+                });
+            }
+        }
+
+        // 4. Veilige UI updates (deze controleren eerst of de elementen wel bestaan op je scherm!)
+        let dispMoney = document.getElementById("money-display");
+        let dispGold = document.getElementById("gold-display");
+        let dispBazaar = document.getElementById("quest-shop-container");
+        let btnShop = document.getElementById("shop-btn");
+        let btnUpgrade = document.getElementById("upgrade-btn");
+        let btnPackUpgrade = document.getElementById("pack-upgrade-btn");
+
+        if (dispMoney) dispMoney.style.display = bank_notif_triggered ? "block" : "none";
+        if (dispGold) dispGold.style.display = bank_notif_triggered ? "block" : "none";
+        if (dispBazaar) dispBazaar.style.display = bank_notif_triggered ? "block" : "none";
+        
+        if (btnShop) {
+            btnShop.style.display = pokemon_notif_triggered ? "inline-block" : "none";
+            btnShop.innerText = `Buy Brokémon Cards ($${current_pack_price.toFixed(2)},-)`;
+        }
+        if (document.getElementById("album-container")) {
+            document.getElementById("album-container").style.display = pokemon_notif_triggered ? "block" : "none";
+        }
+        
+        if (btnUpgrade) {
+            btnUpgrade.style.display = upgrade_button_spawned ? "inline-block" : "none";
+            btnUpgrade.innerText = `Upgrade Hits (${next_multiplier_step}x earnings) ($${upgrade_cost.toFixed(2)},-)`;
+        }
+        
+        if (btnPackUpgrade) {
+            btnPackUpgrade.style.display = pack_upgrade_spawned ? "inline-block" : "none";
+            btnPackUpgrade.innerText = `Upgrade Packs ($${pack_upgrade_cost.toFixed(2)})`;
+        }
+
+        if (mega_legendary_unlocked) {
+            if (document.getElementById("mega-header")) document.getElementById("mega-header").style.display = "block";
+            if (document.getElementById("mega-grid")) document.getElementById("mega-grid").style.display = "grid";
+        }
+
+        // 5. Forceer de live-cijfers naar je interface
+        if (typeof updateMoneyDisplay === "function") updateMoneyDisplay();
+        if (typeof updateGoldDisplay === "function") updateGoldDisplay();
+        if (typeof update_achievement_ui === "function") update_achievement_ui();
+        if (typeof build_rarity_album === "function") build_rarity_album();
+
+        console.log("Successfully loaded progress for Slot " + slotId);
+        return true; // Spel succesvol ingeladen!
+    } catch (e) {
+        console.error("Critical error inside loadGame routine:", e);
+        return false; // Mocht er toch iets geks gebeuren, start dan veilig op
+    }
+}
+
+// ==========================================================
+// 📁 SLOT INTERFACE CONTROL LOGIC (FULLY ENGLISH) 📁
+// ==========================================================
+function updateSlotMenuUI() {
+    for (let i = 1; i <= 3; i++) {
+        let data = localStorage.getItem("joe_game_save_slot_" + i);
+        let infoEl = document.getElementById("slot-info-" + i);
+        let wipeBtn = document.getElementById("wipe-btn-" + i);
+        let nameEl = document.getElementById("slot-name-" + i); 
+        
+        let slotName = localStorage.getItem("joe_game_slot_name_" + i) || "SAVE FILE " + i;
+        
+        if (nameEl) {
+            nameEl.innerText = "📁 " + slotName.toUpperCase();
+        }
+        
+        if (infoEl) {
+            if (data) {
+                try {
+                    let save = JSON.parse(data);
+                    let balance = save.number !== undefined ? save.number : 0;
+                    
+                    // === HIER IS DE CHEAT CHECK ===
+                    let cheatWarning = "";
+                    if (save.has_cheated === true) {
+                        cheatWarning = `<br><span style="color: #ef4444; font-weight: bold; font-size: 11px;">⚠️ Contains Cheats</span>`;
+                    }
+
+                    infoEl.innerHTML = `<span style="color: #10b981; font-weight: bold;">Active Game</span>${cheatWarning}<br>Balance: $${balance.toFixed(2)}`;
+                    if (wipeBtn) wipeBtn.style.display = "inline-block";
+                } catch(e) {
+                    infoEl.innerHTML = `<span style="color: #ef4444;">[ Corrupted Slot ]</span><br>Click to overwrite`;
+                    if (wipeBtn) wipeBtn.style.display = "inline-block";
+                }
+            } else {
+                infoEl.innerHTML = `<span style="color: #9ca3af; font-style: italic;">[ Empty Slot ]</span><br>Click to start new game`;
+                if (wipeBtn) wipeBtn.style.display = "none";
+            }
+        }
+    }
+}
+
+function selectSlotAndPlay(slotId) {
+    console.log("Forcing slot start for Slot: " + slotId);
+    current_slot = slotId;
+    
+    // 1. Maak de game-wrapper DIRECT zichtbaar op het scherm, wat er ook gebeurt!
+    let menu = document.getElementById("slot-select-screen");
+    let wrapper = document.getElementById("game-content-wrapper");
+    if (menu) menu.style.display = "none";
+    if (wrapper) wrapper.style.display = "block !important"; 
+    
+    // Schiet een back-up display-wijziging af mocht de inline stijl haken
+    if (wrapper) wrapper.setAttribute("style", "display: block !important;");
+
+    // 2. Probeer de savegame te laden via een veilige try-catch loop
+    let loaded = false;
+    try {
+        if (typeof loadGame === "function") {
+            loaded = loadGame(slotId);
+        }
+    } catch(err) {
+        console.error("Savegame loading fell back, starting fresh:", err);
+    }
+    
+    // 3. Start de game-engine door naar jouw eigen functies!
+    let hb = document.getElementById("hit-btn");
+    if (hb) hb.style.display = "inline-block";
+
+    if (!loaded) {
+        // Schone start: zet basiswaarden goed en start jouw introductie
+        number = 0.00;
+        gold_coins = 0;
+        click_multiplier = 1.0;
+        currentLineIndex = 0;
+        currentCharIndex = 0;
+        
+        if (typeof startIntro === "function") {
+            startIntro();
+        } else if (typeof typeNextChar === "function") {
+            typeNextChar();
+        }
+    } else {
+        // Bestaand spel: trigger de loops
+        if (typeof generateNewQuests === "function") generateNewQuests(); 
+        if (typeof generateQuestShop === "function") generateQuestShop();  
+        if (typeof startGlobalCountdown === "function") startGlobalCountdown();
+        
+        if (typeof terminal !== 'undefined' && terminal) {
+            terminal.innerHTML = `<span style="color: #2ecc71; font-weight: bold;">Welcome back! Let's hit Joe!</span>\n`;
+        }
+    }
+}
+
+// ==========================================================
+// ⏰ AUTOMATIC STARTUP AND SAVING LOOP ⏰
+// ==========================================================
+function selectSlotAndPlay(slotId) {
+    current_slot = slotId;
+    let loaded = false;
+    
+    if (typeof loadGame === "function") {
+        loaded = loadGame(slotId);
+    }
+    
+    // VERBERG HET SLOTMENU EN TOON HET SPEL
+    let menu = document.getElementById("slot-select-screen");
+    let wrapper = document.getElementById("game-content-wrapper");
+    
+    if (menu) menu.style.display = "none";
+    if (wrapper) wrapper.style.display = "block"; // Floept je hele container in één keer open!
+
+    if (!loaded) {
+        // GLOEDNIEUW SPEL IN DIT SLOT: Reset de engine
+        number = 0.00;
+        gold_coins = 0;
+        click_multiplier = 1.0;
+        total_clicks = 0;
+        total_packs_bought = 0;
+        
+        // Maak album leeg
+        if (typeof owned_epics !== 'undefined') {
+            epic_pool.forEach(name => owned_epics[name] = 0);
+            mythic_pool.forEach(name => owned_mythics[name] = 0);
+            legendary_pool.forEach(name => owned_legendaries[name] = 0);
+            mega_pool.forEach(name => owned_megas[name] = 0);
+        }
+        
+        updateMoneyDisplay();
+        updateGoldDisplay();
+        
+        // Start de typemachine introductie
+        currentLineIndex = 0;
+        currentCharIndex = 0;
+        if (typeof startIntro === "function") {
+            startIntro();
+        }
+    } else {
+        // BESTAAND SPEL: Activeer direct de hit-knop en skip de intro!
+        let hb = document.getElementById("hit-btn");
+        if(hb) hb.style.display = "inline-block";
+        
+        if (typeof generateNewQuests === "function") generateNewQuests(); 
+        if (typeof generateQuestShop === "function") generateQuestShop();  
+        if (typeof startGlobalCountdown === "function") startGlobalCountdown();
+        
+        if (typeof terminal !== 'undefined' && terminal) {
+            terminal.innerHTML = `<span style="color: #2ecc71; font-weight: bold;">Welcome back to Save File ${slotId}! Let's hit Joe!</span>\n`;
+        }
+    }
+}
+
+function wipeSlot(slotId, event) {
+    // Voorkomt dat de browser denkt dat je op het hele slot klikt om te spelen
+    if (event && event.stopPropagation) {
+        event.stopPropagation();
+    } else if (window.event) {
+        window.event.cancelBubble = true;
+    }
+    
+    if (confirm("Are you 100% sure you want to WIPE Save File " + slotId + "? This will erase everything!")) {
+        localStorage.removeItem("joe_game_save_slot_" + slotId);
+        updateSlotMenuUI(); // Ververs direct de teksten in het menu
+    }
+}
+// ==========================================================
+// ✏️ SLOT RENAME SYSTEM ✏️
+// ==========================================================
+function renameSlot(slotId, event) {
+    // Voorkomt dat de game direct start als je op Rename klikt
+    if (event && event.stopPropagation) event.stopPropagation();
+    
+    // Haal de huidige naam op (als die er al is) als standaardwaarde
+    let currentName = localStorage.getItem("joe_game_slot_name_" + slotId) || "Save File " + slotId;
+    
+    let newName = prompt(`Enter a new name for Slot ${slotId}:`, currentName);
+    
+    // Als de speler niet op annuleren heeft gedrukt en iets heeft ingevuld
+    if (newName !== null && newName.trim() !== "") {
+        localStorage.setItem("joe_game_slot_name_" + slotId, newName.trim());
+        updateSlotMenuUI(); // Ververs het menu direct zodat de nieuwe naam zichtbaar is
+    }
+}
+
+
     let cheat_input_value = 1000;
 function updateMatrixCheatValue(element) {
     let val = parseFloat(element.value);
@@ -1296,46 +1713,6 @@ function build_rarity_album() {
     fillGrid("legendary-grid", legendary_pool, owned_legendaries);
     fillGrid("mega-grid", mega_pool, owned_megas);
 }
-
-
-// === STABIELE EN SCHONE OPSTARTCODE (STAAT HIER EXACT ÉÉN KEER) ===
-// === STABIELE EN SCHONE OPSTARTCODE (STAAT HIER EXACT ÉÉN KEER) ===
-document.addEventListener("DOMContentLoaded", () => {
-    currentLineIndex = 0;
-    currentCharIndex = 0;
-    
-    if (typeof build_rarity_album === "function") {
-        build_rarity_album(); 
-    }
-    
-    let hasSave = false;
-    if (typeof loadGame === "function") {
-        hasSave = loadGame();
-    }
-    
-    if (hasSave) {
-        let hb = document.getElementById("hit-btn");
-        if(hb) hb.style.display = "inline-block";
-        
-        if (typeof generateNewQuests === "function") generateNewQuests(); 
-        if (typeof generateQuestShop === "function") generateQuestShop();  
-        if (typeof startGlobalCountdown === "function") startGlobalCountdown();
-        if (typeof update_achievement_ui === "function") update_achievement_ui();
-        
-        if (typeof terminal !== 'undefined' && terminal) {
-            terminal.innerHTML = `<span style="color: #2ecc71; font-weight: bold;">Welcome back! Tap Joe to hit him</span>\n`;
-        }
-    } else {
-        if (typeof startIntro === "function") {
-            startIntro(); 
-        }
-    }
-
-    if (typeof saveGame === "function") {
-        setInterval(saveGame, 10000);
-    }
-});
-
 // ==========================================================
 // 🚨 THE DEVELOPER MATRIX INTERFACE (FULLY ENGLISH RELEASE) 🚨
 // ==========================================================
@@ -1371,6 +1748,8 @@ function TheCreatorGaveMeThisCheatcode44(type, amount) {
 }
 
 function matrixClickMoney() {
+    has_cheated = true; // Markeer dit slot direct als cheat-file
+    saveGame(); // Forceer een directe save zodat het menu direct up-to-date is
     let input = prompt("How much CASH (\$) do you want to add?", "1000");
     if (input === null) return; 
     let amt = parseFloat(input);
@@ -1389,6 +1768,8 @@ function matrixClickMoney() {
 }
 
 function matrixClickGold() {
+    has_cheated = true; // Markeer dit slot direct als cheat-file
+    saveGame(); // Forceer een directe save zodat het menu direct up-to-date is
     let input = prompt("How many GOLD COINS do you want to add?", "100");
     if (input === null) return;
     let amt = Math.floor(parseFloat(input));
@@ -1405,6 +1786,8 @@ function matrixClickGold() {
 }
 
 function matrixClickMultiplier() {
+    has_cheated = true; // Markeer dit slot direct als cheat-file
+    saveGame(); // Forceer een directe save zodat het menu direct up-to-date is
     let input = prompt("By how much do you want to increase the HIT MULTIPLIER?", "10");
     if (input === null) return;
     let amt = parseFloat(input);
@@ -1424,6 +1807,8 @@ function matrixClickMultiplier() {
 }
 
 function matrixClickPacks() {
+    has_cheated = true; // Markeer dit slot direct als cheat-file
+    saveGame(); // Forceer een directe save zodat het menu direct up-to-date is
     let input = prompt("How many PACK UPGRADES do you want to perform?", "5");
     if (input === null) return;
     let amt = Math.floor(parseFloat(input));
@@ -1458,6 +1843,8 @@ function matrixClickPacks() {
 }
 
 function matrixClickCard() {
+    has_cheated = true; // Markeer dit slot direct als cheat-file
+    saveGame(); // Forceer een directe save zodat het menu direct up-to-date is
     let cardName = document.getElementById("cheat-card-name").value;
     if (!cardName || cardName.trim() === "") return alert("Please enter a Brokémon name!");
     if (typeof executeCardSpawnCheat === "function") {
@@ -1467,9 +1854,28 @@ function matrixClickCard() {
     }
 }
 
-// JOUW ENIGE SCRIPT-TAG SLUIT HIER NETJES AF!
-</script>
+// === AUTOMATIC STARTUP AND SAVING LOOP (STAAT HIER VEILIG ONDERAAN) ===
+document.addEventListener("DOMContentLoaded", () => {
+    let menu = document.getElementById("slot-select-screen");
+    let wrapper = document.getElementById("game-content-wrapper");
+    
+    // Toon het menu en verberg de game dwingend bij de start
+    if (menu) menu.style.display = "block";
+    if (wrapper) wrapper.style.display = "none";
 
+    // Vul de 3 slots netjes met je saldo's
+    if (typeof updateSlotMenuUI === "function") {
+        updateSlotMenuUI();
+    }
+    
+    // Start de automatische save-loop van 10 seconden
+    if (typeof saveGame === "function") {
+        setInterval(saveGame, 10000);
+    }
+});
+
+</script>
+<!-- Hierboven eindigt je </script> tag -->
 
 <!-- ==========================================================
      THE DEVELOPER MATRIX INTERFACE (FULLY ENGLISH OUTSIDE SCRIPT)
