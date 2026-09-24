@@ -2,16 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="color-scheme" content="light dark">
     <title>Hit Joe for Brokémon</title>
     <link rel="icon" href="Brokémon.png">
     <style>
+
+        @media (preferred-color-scheme: light) {
+            body {
+                background-color: #f0f2f5;
+            }
+
+            #quest-shop-container {
+                background: #fffdf0;
+                border: 3px solid #ffb703;
+            }
+
+            #album-container {
+                background: white;
+            }
+
+            .album-header {
+                background-color: #f1f3f5;
+            }
+        }
+
+        .red {
+            background-color: #ff4d4d;
+        }
+
         body {
             font-family: 'Comic Sans MS', cursive, sans-serif;
-            background-color: #f0f2f5;
             text-align: center;
             padding: 20px;
             transition: background-color 0.15s ease;
         }
+
         .container {
             display: flex;
             justify-content: center;
@@ -71,6 +96,7 @@
             display: none; 
             transition: transform 0.08s ease, color 0.1s ease;
         }
+
         #gold-display {
             font-size: 28px;
             font-weight: bold;
@@ -139,7 +165,6 @@
         
         #album-container {
             margin-top: 30px;
-            background: white;
             border: 2px solid #adb5bd;
             border-radius: 12px;
             max-width: 750px;
@@ -147,6 +172,7 @@
             padding: 15px;
             display: none;
         }
+
         .tier-title { font-weight: bold; padding: 6px; margin-top: 15px; border-radius: 4px; text-align: left; }
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; padding: 8px 0; }
         .card-item { text-align: left; font-size: 13px; }
@@ -210,11 +236,11 @@
         <h3>🏆 Brokémon Ultra-Rare Checklist Album</h3>
         <div id="mega-header" class="tier-title" style="background-color: #fff3cd; color: #d97706; display: none;">🔥 MEGA LEGENDARY CARDS (<span id="mega-rate">0.50</span>% Chance - <span style="font-size: 10px; color: #b45309;">Rates boost to 1.00% once Packs are MAXED!</span>) — [+\$25000/sec & +5000% Multiplier ea.]</div>
         <div class="grid" id="mega-grid" style="display: none;"></div>
-        <div class="tier-title" style="background-color: #f1f3f5; color: #00b4d8;">  🔷 EPIC CARDS (<span id="epic-rate">1.00</span>% Chance) — [+\$25/sec & +50% Multiplier ea.]</div>
+        <div class="tier-title" style="color: #00b4d8;" class="album-header"  🔷 EPIC CARDS (<span id="epic-rate">1.00</span>% Chance) — [+\$25/sec & +50% Multiplier ea.]</div>
         <div class="grid" id="epic-grid"></div>
-        <div class="tier-title" style="background-color: #f1f3f5; color: #8a2be2;">  🔮 MYTHIC CARDS (<span id="mythic-rate">0.50</span>% Chance) — [+\$500/sec & +200% Multiplier ea.]</div>
+        <div class="tier-title" style="color: #8a2be2;" class="album-header">  🔮 MYTHIC CARDS (<span id="mythic-rate">0.50</span>% Chance) — [+\$500/sec & +200% Multiplier ea.]</div>
         <div class="grid" id="mythic-grid"></div>
-        <div class="tier-title" style="background-color: #f1f3f5; color: #e63946;">  👑 LEGENDARY CARDS (<span id="legendary-rate">0.10</span>% Chance) — [+\$5000/sec & +1000% Multiplier ea.]</div>
+        <div class="tier-title" style="color: #e63946;" class="album-header">  👑 LEGENDARY CARDS (<span id="legendary-rate">0.10</span>% Chance) — [+\$5000/sec & +1000% Multiplier ea.]</div>
         <div class="grid" id="legendary-grid"></div>
     </div>
 
@@ -875,24 +901,27 @@ function triggerAchievement(id, awardText) {
 }
 
 function resetBackground() {
-    document.body.style.backgroundColor = "#f0f2f5";
+    document.body.classList.remove("red")
 }
-
+function strikeBack() {
+    let loss = number * 0.10; 
+    number -= loss;
+    updateMoneyDisplay();
+    triggerMoneyAnimation('loss'); 
+    terminal.innerHTML += `\n<span style="color: #ff4d4d; font-weight: bold;">[JOE STRIKES BACK] Joe got mad and hit you back! You lost $${loss.toFixed(2)}!</span>\n\n`;
+    terminal.scrollTop = terminal.scrollHeight;
+    document.body.classList.add("red")
+    setTimeout(resetBackground, 150);
+    checkAchievements('cash', number);        
+}
 function clickJoe() {
     total_clicks++;
     recent_clicks_this_cycle++;
     
     if (number > 5.0 && Math.random() < 0.02) {
-        let loss = number * 0.10; 
-        number -= loss;
-        updateMoneyDisplay();
-        triggerMoneyAnimation('loss'); 
-        terminal.innerHTML += `\n<span style="color: #ff4d4d; font-weight: bold;">[JOE STRIKES BACK] Joe got mad and hit you back! You lost $${loss.toFixed(2)}!</span>\n\n`;
-        terminal.scrollTop = terminal.scrollHeight;
-        document.body.style.backgroundColor = "#ff4d4d";
-        setTimeout(resetBackground, 150);
-        checkAchievements('cash', number); 
-        return; 
+        
+        strikeBack()
+        return;
     }
 
     let album_mult = get_album_multiplier();
