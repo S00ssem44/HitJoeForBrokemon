@@ -272,7 +272,7 @@ function TheCreatorGaveMeThisCheatcode44(type, amount) {
             terminal.innerHTML += `\n<span style="color: #ef4444; font-weight: bold;">🚨 [ACCESS GRANTED] Developer Matrix geactiveerd!</span>\n`;
             terminal.scrollTop = terminal.scrollHeight;
         }
-        return "Developer panel geactiveerd onderaan de pagina.";
+        return "Developer panel activatet at the bottom of the page.";
     }
 
     // ALS ER WEL PARAMETERS ZIJN: Direct via console verwerken
@@ -282,7 +282,7 @@ function TheCreatorGaveMeThisCheatcode44(type, amount) {
     
     let parsedAmount = parseFloat(amount);
     if (isNaN(parsedAmount) || parsedAmount <= 0) {
-        return "Fout: Voer een geldig getal in.";
+        return "ERROR: enter a valid number.";
     }
     return executeCheatInjection(String(type).toLowerCase().trim(), parsedAmount);
 }
@@ -294,14 +294,14 @@ function executeCheatInjection(type, amount) {
         updateMoneyDisplay();
         triggerMoneyAnimation('win');
         checkAchievements('cash', number);
-        if (terminal) terminal.innerHTML += `<span style="color: #10b981;">[CHEAT] +$${amount.toLocaleString()} cash geïnjecteerd.</span>\n`;
-        return `Succes! $${amount.toLocaleString()} toegevoegd.`;
+        if (terminal) terminal.innerHTML += `<span style="color: #10b981;">[CHEAT] +$${amount.toLocaleString()} cash injected.</span>\n`;
+        return `Succes! $${amount.toLocaleString()} added.`;
     } 
     else if (type === 'gold') {
         gold_coins += Math.floor(amount);
         updateGoldDisplay();
         if (terminal) terminal.innerHTML += `<span style="color: #f59e0b;">[CHEAT] +${Math.floor(amount)} Gold Coins geïnjecteerd.</span>\n`;
-        return `Succes! ${Math.floor(amount)} Gold Coins toegevoegd.`;
+        return `Succes! ${Math.floor(amount)} Gold Coins added.`;
     } 
     else if (type === 'multiplier') {
         click_multiplier += amount;
@@ -309,8 +309,8 @@ function executeCheatInjection(type, amount) {
         if(ub && typeof upgrade_cost !== 'undefined') {
             ub.innerText = `Upgrade Hits (${(click_multiplier * 2).toFixed(1)}x earnings) ($${upgrade_cost.toFixed(2)},-)`;
         }
-        if (terminal) terminal.innerHTML += `<span style="color: #8b5cf6;">[CHEAT] Multiplier verhoogd met +${amount}x! (Nu: ${click_multiplier}x)</span>\n`;
-        return `Succes! Multiplier verhoogd.`;
+        if (terminal) terminal.innerHTML += `<span style="color: #8b5cf6;">[CHEAT] Multiplier upgraded with +${amount}x! (Nu: ${click_multiplier}x)</span>\n`;
+        return `Succes! Multiplier upgraded.`;
     }
     else if (type === 'pack_upgrade') {
         let loops = Math.min(Math.floor(amount), 100);
@@ -322,14 +322,14 @@ function executeCheatInjection(type, amount) {
         }
         number = preNumber;
         updateMoneyDisplay();
-        return `Pack upgrades succesvol uitgevoerd!`;
+        return `Pack upgrades succesfully added!`;
     }
-    return "Foutieve cheat type.";
+    return "Incorrect cheat type.";
 }
 
 // 3. De kaart generator logica (koppelt aan de arrays uit jouw eerdere code)
 function executeCardSpawnCheat(cardName) {
-    if (!cardName) return "Voer een kaartnaam in.";
+    if (!cardName) return "Enter a card name.";
     
     let targetName = cardName.trim().toLowerCase();
     let found = false;
@@ -391,7 +391,7 @@ function injectCardCheat() {
     let cardInput = document.getElementById("cheat-card-name");
     let cardName = cardInput.value;
     if (!cardName || cardName.trim() === "") {
-        alert("Voer de exacte naam van een Brokémon in!");
+        alert("Enter the exact name of a Brokémon!");
         return;
     }
     let result = executeCardSpawnCheat(cardName);
@@ -541,7 +541,7 @@ function executeCheatInjection(type, amount) {
         gold_coins += Math.floor(amount);
         if (typeof updateGoldDisplay === "function") updateGoldDisplay();
         if (terminal) terminal.innerHTML += `<span style="color: #f59e0b;">[CHEAT] Injected ${Math.floor(amount)} Gold Coins into inventory.</span>\n`;
-        return `Succes! ${Math.floor(amount)} Gold Coins toegevoegd.`;
+        return `Succes! ${Math.floor(amount)} Gold Coins added.`;
     } 
     else if (type === 'multiplier') {
         click_multiplier += amount;
@@ -550,9 +550,9 @@ function executeCheatInjection(type, amount) {
             ub.innerText = `Upgrade Hits (${(click_multiplier * 2).toFixed(1)}x earnings) ($${upgrade_cost.toFixed(2)},-)`;
         }
         if (terminal) terminal.innerHTML += `<span style="color: #8b5cf6;">[CHEAT] Added +${amount}x to Hit Multiplier. New: ${click_multiplier}x!</span>\n`;
-        return `Succes! Multiplier verhoogd met +${amount}x.`;
+        return `Succes! Multiplier increased with +${amount}x.`;
     }
-    return "Foutieve invoer: Kies uit 'money', 'gold', of 'multiplier'.";
+    return "Incorrect input: choose 'money', 'gold', or 'multiplier'.";
 }
 
 // De functie die door de HTML-knoppen onderaan wordt aangeroepen
@@ -561,7 +561,7 @@ function injectCheat(type) {
     let amount = parseFloat(amountInput.value);
     
     if (isNaN(amount) || amount <= 0) {
-        alert("Voer eerst een geldig positief getal in!");
+        alert("First enter a valid positive number!");
         return;
     }
     
@@ -1357,24 +1357,24 @@ function TheCreatorGaveMeThisCheatcode44(type, amount) {
             terminal.innerHTML += `\n<span style="color: #ef4444; font-weight: bold;">🚨 [ACCESS GRANTED] Developer Matrix geactiveerd!</span>\n`;
             terminal.scrollTop = terminal.scrollHeight;
         }
-        return "Developer panel geactiveerd onderaan de pagina.";
+        return "Developer panel activated at the botom of the page.";
     }
 
     // Directe verwerking via de console
     if (String(type).toLowerCase().trim() === 'card') {
         if (typeof executeCardSpawnCheat === "function") return executeCardSpawnCheat(String(amount));
-        return "Fout: Kaart-cheat functie niet gevonden.";
+        return "ERROR: Card-cheat function not found.";
     }
     
     let parsedAmount = parseFloat(amount);
     if (isNaN(parsedAmount) || parsedAmount <= 0) {
-        return "Fout: Voer een geldig getal in.";
+        return "ERROR: Enter a valid number.";
     }
     
     if (typeof executeCheatInjection === "function") {
         return executeCheatInjection(String(type).toLowerCase().trim(), parsedAmount);
     }
-    return "Fout: Injectie-functie niet gevonden.";
+    return "ERROR: Injection-function not found.";
 }
 
 // Onafhankelijke knoppen-helpers gekoppeld aan de spans onderaan
@@ -1385,10 +1385,10 @@ function TheCreatorGaveMeThisCheatcode44(type, amount) {
 // KOGELVRIJE CHEAT-HELPERS VIA DIRECTE POP-UP BOXEN
 // ==========================================================
 function matrixClickMoney() {
-    let input = prompt("Hoeveel CASH (\$) wil je toevoegen?", "1000");
+    let input = prompt("How much (\$) do you want to add?", "1000");
     if (input === null) return; // Geannuleerd
     let amt = parseFloat(input);
-    if (isNaN(amt) || amt <= 0) return alert("Voer een geldig positief getal in!");
+    if (isNaN(amt) || amt <= 0) return alert("Enter a valid positive number!");
 
     if (typeof number !== 'undefined') {
         number += amt;
@@ -1403,10 +1403,10 @@ function matrixClickMoney() {
 }
 
 function matrixClickGold() {
-    let input = prompt("Hoeveel GOLD COINS (🌟) wil je toevoegen?", "100");
+    let input = prompt("How much GOLD COINS (🌟) do you want to add?", "100");
     if (input === null) return;
     let amt = Math.floor(parseFloat(input));
-    if (isNaN(amt) || amt <= 0) return alert("Voer een geldig positief getal in!");
+    if (isNaN(amt) || amt <= 0) return alert("Enter a valid positive number!");
 
     if (typeof gold_coins !== 'undefined') {
         gold_coins += amt;
@@ -1419,10 +1419,10 @@ function matrixClickGold() {
 }
 
 function matrixClickMultiplier() {
-    let input = prompt("Met hoeveel x wil je de HIT MULTIPLIER verhogen?", "10");
+    let input = prompt("With how much x do you want to upgrade HIT MULTIPLIER?", "10");
     if (input === null) return;
     let amt = parseFloat(input);
-    if (isNaN(amt) || amt <= 0) return alert("Voer een geldig positief getal in!");
+    if (isNaN(amt) || amt <= 0) return alert("Enter a valid positive number");
 
     if (typeof click_multiplier !== 'undefined') {
         click_multiplier += amt;
@@ -1438,14 +1438,14 @@ function matrixClickMultiplier() {
 }
 
 function matrixClickPacks() {
-    let input = prompt("Hoeveel PACK UPGRADES wil je uitvoeren?", "5");
+    let input = prompt("How many PACK UPGRADES do you want?", "5");
     if (input === null) return;
     let amt = Math.floor(parseFloat(input));
-    if (isNaN(amt) || amt <= 0) return alert("Voer een geldig positief getal in!");
+    if (isNaN(amt) || amt <= 0) return alert("Enter a valid positive number");
 
     if (typeof upgrade_packs_click === "function" && typeof chance_epic !== 'undefined' && typeof number !== 'undefined') {
         if (chance_epic >= 0.50) {
-            if (terminal) terminal.innerHTML += `\n<span style="color: #00bcd4;">[CHEAT] Packs zijn al op het maximale niveau!</span>\n`;
+            if (terminal) terminal.innerHTML += `\n<span style="color: #00bcd4;">[CHEAT] Packs are already on the highest level!</span>\n`;
             return;
         }
 
@@ -1465,7 +1465,7 @@ function matrixClickPacks() {
         }
         
         if (terminal) {
-            terminal.innerHTML += `\n<span style="color: #00bcd4;">[CHEAT] Pack upgrades verwerkt! (Huidige Epic kans: ${(chance_epic * 100).toFixed(2)}%)</span>\n`;
+            terminal.innerHTML += `\n<span style="color: #00bcd4;">[CHEAT] Pack upgrades completed! (Epic chance: ${(chance_epic * 100).toFixed(2)}%)</span>\n`;
             terminal.scrollTop = terminal.scrollHeight;
         }
     }
@@ -1473,7 +1473,7 @@ function matrixClickPacks() {
 
 function matrixClickCard() {
     let cardName = document.getElementById("cheat-card-name").value;
-    if (!cardName || cardName.trim() === "") return alert("Voer een Brokémon-naam in!");
+    if (!cardName || cardName.trim() === "") return alert("Enter a Brokémon-name!");
     if (typeof executeCardSpawnCheat === "function") {
         let result = executeCardSpawnCheat(cardName);
         if (result.startsWith("Kaart")) alert(result);
