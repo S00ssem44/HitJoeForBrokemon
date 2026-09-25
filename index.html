@@ -251,8 +251,8 @@
         onmouseleave="this.innerText='😃'" 
         onmousedown="this.innerText='😵‍💫'" 
         onmouseup="this.innerText='😨'">😃</button> <br>
-    <button id="shop-btn" onclick="new_button_click()">Buy Brokémon Cards (\$10.00,-)</button>
-    <button id="upgrade-btn" onclick="upgrade_button_click()">Upgrade Hits (2x earnings) (\$100.00,-)</button>
+    <button id="shop-btn" onclick="new_button_click()">Buy Brokémon Cards (\$10.00)</button>
+    <button id="upgrade-btn" onclick="upgrade_button_click()">Upgrade Hits (2x earnings) (\$100.00)</button>
     <button id="pack-upgrade-btn" onclick="upgrade_packs_click()">Upgrade Packs (\$200.00)</button>
 
     <div id="quest-shop-container">
@@ -442,7 +442,7 @@ function loadGame(slotId) {
         
         if (btnShop) {
             btnShop.style.display = pokemon_notif_triggered ? "inline-block" : "none";
-            btnShop.innerText = `Buy Brokémon Cards ($${current_pack_price.toFixed(2)},-)`;
+            btnShop.innerText = `Buy Brokémon Cards ($${current_pack_price.toFixed(2)})`;
         }
         if (document.getElementById("album-container")) {
             document.getElementById("album-container").style.display = pokemon_notif_triggered ? "block" : "none";
@@ -450,7 +450,7 @@ function loadGame(slotId) {
         
         if (btnUpgrade) {
             btnUpgrade.style.display = upgrade_button_spawned ? "inline-block" : "none";
-            btnUpgrade.innerText = `Upgrade Hits (${next_multiplier_step}x earnings) ($${upgrade_cost.toFixed(2)},-)`;
+            btnUpgrade.innerText = `Upgrade Hits (${next_multiplier_step}x earnings) ($${upgrade_cost.toFixed(2)})`;
         }
         
         if (btnPackUpgrade) {
@@ -724,7 +724,7 @@ function executeCheatInjection(type, amount) {
         click_multiplier += amount;
         let ub = document.getElementById("upgrade-btn");
         if(ub && typeof upgrade_cost !== 'undefined') {
-            ub.innerText = `Upgrade Hits (${(click_multiplier * 2).toFixed(1)}x earnings) ($${upgrade_cost.toFixed(2)},-)`;
+            ub.innerText = `Upgrade Hits (${(click_multiplier * 2).toFixed(1)}x earnings) ($${upgrade_cost.toFixed(2)})`;
         }
         if (terminal) terminal.innerHTML += `<span style="color: #8b5cf6;">[CHEAT] Multiplier upgraded with +${amount}x! (Nu: ${click_multiplier}x)</span>\n`;
         return `Succes! Multiplier upgraded.`;
@@ -839,7 +839,7 @@ function executeCheatInjection(type, amount) {
         click_multiplier += amount;
         let ub = document.getElementById("upgrade-btn");
         if(ub && typeof upgrade_cost !== 'undefined') {
-            ub.innerText = `Upgrade Hits (${(click_multiplier * 2).toFixed(1)}x earnings) ($${upgrade_cost.toFixed(2)},-)`;
+            ub.innerText = `Upgrade Hits (${(click_multiplier * 2).toFixed(1)}x earnings) ($${upgrade_cost.toFixed(2)})`;
         }
         if (terminal) terminal.innerHTML += `<span style="color: #8b5cf6;">[CHEAT] Added +${amount}x to Hit Multiplier. New: ${click_multiplier}x!</span>\n`;
         return `Succes! Multiplier verhoogd met +${amount}x.`;
@@ -964,7 +964,7 @@ function executeCheatInjection(type, amount) {
         click_multiplier += amount;
         let ub = document.getElementById("upgrade-btn");
         if(ub && typeof upgrade_cost !== 'undefined') {
-            ub.innerText = `Upgrade Hits (${(click_multiplier * 2).toFixed(1)}x earnings) ($${upgrade_cost.toFixed(2)},-)`;
+            ub.innerText = `Upgrade Hits (${(click_multiplier * 2).toFixed(1)}x earnings) ($${upgrade_cost.toFixed(2)})`;
         }
         if (terminal) terminal.innerHTML += `<span style="color: #8b5cf6;">[CHEAT] Added +${amount}x to Hit Multiplier. New: ${click_multiplier}x!</span>\n`;
         return `Succes! Multiplier increased with +${amount}x.`;
@@ -1013,7 +1013,7 @@ function injectCheat(type) {
         
         // Update direct de paarse knoptekst als die al in beeld is
         let ub = document.getElementById("upgrade-btn");
-        if(ub) ub.innerText = `Upgrade Hits (${(click_multiplier * 2).toFixed(1)}x earnings) ($${upgrade_cost.toFixed(2)},-)`;
+        if(ub) ub.innerText = `Upgrade Hits (${(click_multiplier * 2).toFixed(1)}x earnings) ($${upgrade_cost.toFixed(2)})`;
     }
     
     terminal.scrollTop = terminal.scrollHeight;
@@ -1366,7 +1366,7 @@ function clickJoe() {
         let sb = document.getElementById("shop-btn");
         let ac = document.getElementById("album-container");
         if(sb) {
-            sb.innerText = `Buy Brokémon Cards ($${current_pack_price.toFixed(2)},-)`;
+            sb.innerText = `Buy Brokémon Cards ($${current_pack_price.toFixed(2)})`;
             sb.style.display = "inline-block";
         }
         if(ac) ac.style.display = "block";
@@ -1574,7 +1574,7 @@ function upgrade_button_click() {
         upgrade_cost *= 2.5;
         next_multiplier_step *= 2;
         let ub = document.getElementById("upgrade-btn");
-        if(ub) ub.innerText = `Upgrade Hits (${next_multiplier_step}x earnings) ($${upgrade_cost.toFixed(2)},-)`;
+        if(ub) ub.innerText = `Upgrade Hits (${next_multiplier_step}x earnings) ($${upgrade_cost.toFixed(2)})`;
         checkQuestProgression('buy_upgrade', 1);
     } else {
         terminal.innerHTML += `Not enough money!\n`;
@@ -1621,7 +1621,7 @@ function upgrade_packs_click() {
             if(pub) pub.innerText = `Upgrade Packs ($${pack_upgrade_cost.toFixed(2)})`;
         }
         
-        if(sb) sb.innerText = `Buy Brokémon Cards ($${current_pack_price.toFixed(2)},-)`;
+        if(sb) sb.innerText = `Buy Brokémon Cards ($${current_pack_price.toFixed(2)})`;
         
         // Sla direct de voortgang op (als je het opslegsysteem gebruikt)
         if (typeof saveGame === "function") saveGame();
@@ -1797,7 +1797,7 @@ function matrixClickMultiplier() {
         click_multiplier += amt;
         let ub = document.getElementById("upgrade-btn");
         if (ub && typeof upgrade_cost !== 'undefined') {
-            ub.innerText = `Upgrade Hits (${(click_multiplier * 2).toFixed(1)}x earnings) ($${upgrade_cost.toFixed(2)},-)`;
+            ub.innerText = `Upgrade Hits (${(click_multiplier * 2).toFixed(1)}x earnings) ($${upgrade_cost.toFixed(2)})`;
         }
         if (typeof terminal !== 'undefined' && terminal) {
             terminal.innerHTML += `\n<span style="color: #8b5cf6;">[CHEAT] Hit Multiplier boosted by +${amt.toLocaleString()}x!</span>\n`;
