@@ -1026,7 +1026,7 @@ let gold_coins = 0;
 let click_multiplier = 1.0;
 let achievement_bonus_multiplier = 1.0; 
 let upgrade_cost = 100.0;
-let next_multiplier_step = 2.0; 
+let next_multiplier_step = 2; 
 let upgrade_button_spawned = false;
 
 let pack_upgrade_cost = 200.0;
@@ -1571,8 +1571,8 @@ function upgrade_button_click() {
         updateMoneyDisplay();
         triggerMoneyAnimation('loss');
         terminal.innerHTML += `<span style="color: #9c27b0; font-weight: bold;">UPGRADE BOUGHT! Multiplier: ${click_multiplier}x!</span>\n`;
-        upgrade_cost *= 1.9;
-        next_multiplier_step *= 2.0;
+        upgrade_cost *= 2.5;
+        next_multiplier_step *= 2;
         let ub = document.getElementById("upgrade-btn");
         if(ub) ub.innerText = `Upgrade Hits (${next_multiplier_step}x earnings) ($${upgrade_cost.toFixed(2)},-)`;
         checkQuestProgression('buy_upgrade', 1);
