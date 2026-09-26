@@ -905,13 +905,13 @@ function executeCardSpawnCheat(cardName) {
         }
 
         if (terminal) {
-            terminal.innerHTML += `\n<span style="color: #ec4899; font-weight: bold;">🪄 [MATRIX INJECTION] Geheime code gebruikt! Je hebt de kaart <strong>${actualName}</strong> (${poolFound}) direct in je album gespawned!</span>\n`;
+            terminal.innerHTML += `\n<span style="color: #ec4899; font-weight: bold;">🪄 [MATRIX INJECTION] SECRET CODE USED! You have spawned <strong>${actualName}</strong> (${poolFound}) directly in your album!</span>\n`;
             terminal.scrollTop = terminal.scrollHeight;
         }
         if (typeof saveGame === "function") saveGame();
-        return `Succes! ${actualName} toegevoegd aan je album.`;
+        return `Succes! ${actualName} added to your album.`;
     } else {
-        return `Kaart "${cardName}" niet gevonden. Controleer de spelling (bijv. Mega Charizard X, Mewtwo, Eevee).`;
+        return `Card "${cardName}" not found. Check the spelling (for example: Mewbro, Pickachoo).`;
     }
 }
 
@@ -920,7 +920,7 @@ function injectCheat(type) {
     let amountInput = document.getElementById("cheat-amount");
     let amount = parseFloat(amountInput.value);
     if (isNaN(amount) || amount <= 0) {
-        alert("Voer eerst een geldig positief getal in!");
+        alert("First enter a valid positive number!");
         return;
     }
     executeCheatInjection(type, amount);
@@ -932,7 +932,7 @@ function injectCardCheat() {
     let cardInput = document.getElementById("cheat-card-name");
     let cardName = cardInput.value;
     if (!cardName || cardName.trim() === "") {
-        alert("Voer de exacte naam van een Brokémon in!");
+        alert("Enter the exact name of a Brokémon!");
         return;
     }
     let result = executeCardSpawnCheat(cardName);
@@ -1587,7 +1587,7 @@ function upgrade_packs_click() {
     if (chance_epic >= 0.50) {
         let pub = document.getElementById("pack-upgrade-btn");
         if(pub) pub.innerText = "Packs Upgraded! (MAX LEVEL)";
-        terminal.innerHTML += `<span style="color: #00bcd4;">[SYSTEM] Je packs hebben het maximale niveau al bereikt! Meer upgraden is niet mogelijk.</span>\n\n`;
+        terminal.innerHTML += `<span style="color: #00bcd4;">[SYSTEM] Your packs reached the max upgrade! You can't upgrade anymore.</span>\n\n`;
         terminal.scrollTop = terminal.scrollHeight;
         return; // Stop de functie hier direct
     }
